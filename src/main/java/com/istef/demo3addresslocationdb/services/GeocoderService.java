@@ -5,7 +5,6 @@ import com.istef.demo3addresslocationdb.entities.Site;
 import com.istef.demo3addresslocationdb.json.Response;
 import com.istef.demo3addresslocationdb.json.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -45,11 +44,9 @@ public class GeocoderService {
                 .bodyToMono(Response.class)
                 .block(Duration.ofSeconds(2));
         Optional<Result> result = response.results().stream().findFirst();
-        if (result.isEmpty()) {
-            return null;
-        }
-        return new Site(result.get().formattedAddress(),
-                result.get().geometry().location().lat(),
-                result.get().geometry().location().lng());
+        return result.map(value -> new Site(value.formattedAddress(),
+                        value.geometry().location().lat(),
+                        value.geometry().location().lng()))
+                .orElse(null);
     }
 }
