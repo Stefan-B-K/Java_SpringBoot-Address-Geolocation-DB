@@ -17,13 +17,17 @@ public class Site {
     private double latitude;
     private double longitude;
 
+    public Site() {
+    }
+
+    public Site(String address) {
+        this.address = address;
+    }
+
     public Site(String address, double latitude, double longitude) {
         this.address = address;
         this.latitude = latitude;
         this.longitude = longitude;
-    }
-
-    public Site() {
     }
 
     public String getAddress() {
@@ -36,5 +40,9 @@ public class Site {
 
     public double getLongitude() {
         return longitude;
+    }
+
+    public int getId() {
+        return id;
     }
 }

@@ -23,7 +23,7 @@ public class GeocoderServiceTest {
     }
 
     @Test
-    public void getLatLngWithStreet() throws Exception {
+    public void getLatLngWithStreet() {
         Site site = service.getLatLng("1600 Amphitheate Parkway", "Mountain View", "CA");
         assertAll(
                 () -> assertEquals(37.42, site.getLatitude(), 0.01),
