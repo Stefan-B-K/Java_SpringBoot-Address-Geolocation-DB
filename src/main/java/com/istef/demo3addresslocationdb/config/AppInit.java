@@ -6,12 +6,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ConfigInit implements CommandLineRunner {
+public class AppInit implements CommandLineRunner {
 
     private final SiteService siteService;
 
     @Autowired
-    public ConfigInit(SiteService siteService) {
+    public AppInit(SiteService siteService) {
         this.siteService = siteService;
     }
 

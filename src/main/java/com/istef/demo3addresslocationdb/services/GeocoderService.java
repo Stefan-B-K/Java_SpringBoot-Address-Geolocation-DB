@@ -1,6 +1,6 @@
 package com.istef.demo3addresslocationdb.services;
 
-import com.istef.demo3addresslocationdb.config.ConfigProperties;
+import com.istef.demo3addresslocationdb.config.GoogleApisConfig;
 import com.istef.demo3addresslocationdb.entities.Site;
 import com.istef.demo3addresslocationdb.json.Response;
 import com.istef.demo3addresslocationdb.json.Result;
@@ -18,15 +18,15 @@ import java.util.stream.Stream;
 @Service
 public class GeocoderService {
 
-    private final ConfigProperties configProps;
+    private final GoogleApisConfig googleApisConfig;
 
     private final WebClient client;
 
     @Autowired
     public GeocoderService(WebClient.Builder builder,
-                           ConfigProperties configProps) {
-        client = builder.baseUrl(configProps.googleApisUrl()).build();
-        this.configProps = configProps;
+                           GoogleApisConfig configProps) {
+        client = builder.baseUrl(configProps.getUrl()).build();
+        this.googleApisConfig = configProps;
     }
 
     public Site getLatLng(String... address) {
@@ -37,7 +37,7 @@ public class GeocoderService {
         Response response = client.get()
                 .uri(uriBuilder -> uriBuilder.path(path)
                         .queryParam("address", encoded)
-                        .queryParam("key", configProps.googleGeocodingKey())
+                        .queryParam("key", googleApisConfig.getGeocodingKey())
                         .build()
                 )
                 .retrieve()

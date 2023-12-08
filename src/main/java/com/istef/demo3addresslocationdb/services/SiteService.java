@@ -30,8 +30,9 @@ public class SiteService {
         repository.saveAll(List.of(
                 fillInLocation(new Site("Boston, MA")),
                 fillInLocation(new Site("Framingham, MA")),
-                fillInLocation(new Site("Waltham, MA")))
-        ).forEach(System.out::println);
+                fillInLocation(new Site("Waltham, MA")),
+                fillInLocation(new Site("Washington, DC"))
+        )).forEach(System.out::println);
     }
 
     public List<Site> findAllSites() {
